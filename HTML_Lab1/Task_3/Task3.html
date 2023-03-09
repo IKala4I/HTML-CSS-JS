@@ -1,44 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Task 3</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 3</title>
+    <style> p[data-comment="orange"] {color: orange;}</style>
 </head>
 <body>
-	<h1>Task 3</h1>
-    <hr />
-    <div class="Full teacher's card">
-        <table border="thead-dark" class="table table-bordered" data-color="pink">
-            <thead class="thead-dark">
-                <tr>
-                <th colspan="8" class="text-center">Full teacher's card</th>
-                </tr>
-                <tr>
-                    <th>Full Name</th>
-                    <th>Sex</th>
-                    <th>Age</th>
-                    <th>Email</th>
-                    <th>Phone Number</th>
-                    <th>Country</th>
-                    <th>City</th>
-                    <th>Comment</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Pershko Vladyslav</td>
-                    <td>Male</td>
-                    <td>18</td>
-                    <td>pershko@gmail.com</td>
-                    <td>096-123-45-67</td>
-                    <td>Ukraine</td>
-                    <td>Ovruch</td>
-                    <td>Teacher's comment</td>
-                </tr>
-           </tbody>
-        </table>
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d39892.34803214278!2d28.773060616074304!3d51.324521278877114!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x472987f8b974aae1%3A0xc133be32ddf9c30a!2sOvruch%2C%20Zhytomyr%20Oblast%2C%20Ukraine%2C%2011101!5e0!3m2!1sen!2suk!4v1677496924666!5m2!1sen!2suk" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
+    <main>
+        <h1>Teacher Info</h1>
+        <section>
+            <aside style="float: left;"><img src="../Images/MyFoto.jpg" alt="The teacher's foto should have been here." width="220" height="220"></aside>
+            <header>
+                <h2>Teacher's Name</h2>
+                <h3>Subject</h3>
+            </header>
+            <label>City, Country</label><br><br>
+            <label>Age, Sex</label><br><br>
+            <label><a href = "mailto:email@gmail.com">email@gmail.com</a></label><br><br>
+            <label class="phone">+380-(96)-111-11-11</label>
+            <footer>
+                <p data-comment="orange">The teacher's comment could have been here</p>
+                <a href="https://goo.gl/maps/guWVr75vEC8wbPXr7" target="_blank">See the teacher's location</a>
+            </footer>
+        </section>
+    </main>
 </body>
 </html>
