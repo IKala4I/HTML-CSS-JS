@@ -1,0 +1,285 @@
+.form-popup {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+
+  .form-popup:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .form {
+    max-width: 450px;
+    background-color: white;
+    position: relative;
+    margin: 0 auto;
+    top: 25%;
+    transition: 3s ease;
+
+    .form-header {
+      margin-bottom: 30px;
+      display: flex;
+      background-color: #1a222e;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
+    }
+
+    h3 {
+      color: white;
+      margin: 7px 0;
+    }
+
+    .close {
+      height: 50%;
+      color: white;
+      font-size: x-large;
+    }
+
+    .form-container {
+      padding: 0 15px;
+
+      .data-item {
+        max-width: 45%;
+        padding-right: 20px;
+      }
+
+      .name, .speciality, .notes {
+        width: 100%;
+      }
+
+      .form-item {
+        margin-bottom: 15px;
+      }
+
+      textarea {
+        resize: none;
+      }
+
+      .flex-data {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .birthday {
+        display: block;
+        width: 45%;
+      }
+
+      .sex {
+        display: flex;
+        width: 45%;
+        justify-content: space-between;
+        margin-bottom: 15px;
+      }
+
+      .color {
+        display: flex;
+        align-items: center;
+        width: 45%;
+        margin-bottom: 15px;
+        position: relative;
+
+        label{
+          width: 10%;
+        }
+
+        input {
+          margin: 0 0 0 auto;
+          padding: 4% 3%;
+        }
+
+        .back-color {
+          position: absolute;
+          width: 10%;
+          height: 80%;
+          right: 30%;
+        }
+      }
+
+      .submit {
+        color: red;
+        width: 100%;
+        font-size: 36px;
+      }
+
+      .submit:hover {
+        color: white;
+      }
+    }
+  }
+
+.teacher-info-popup {
+  visibility: hidden;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  position: absolute;
+  background: rgba(0, 0, 0, 0.7);
+  opacity: 0;
+  transition: opacity 500ms;
+}
+
+  .teacher-info-popup:target {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .teacher-info {
+    max-width: 550px;
+    background-color: white;
+    position: relative;
+    margin: 0 auto;
+    top: 25%;
+    transition: 3s ease;
+
+    .info-header {
+      margin-bottom: 10px;
+      display: flex;
+      background-color: #1a222e;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 10px;
+
+
+      h3 {
+        color: white;
+        margin: 7px 0;
+      }
+
+      .close {
+        height: 50%;
+        color: white;
+        font-size: x-large;
+      }
+    }
+
+    .info {
+      padding: 0 15px 10px;
+
+      .card {
+        position: relative;
+      }
+
+      .card::after {
+        content: '';
+        display: table;
+        clear: both;
+      }
+
+      .photo {
+        width: 250px;
+        height: 250px;
+        float: left;
+        margin-right: 20px;
+      }
+
+      .star {
+        width: 40px;
+        height: 40px;
+        position: absolute;
+        top: -8px;
+        right: 0;
+      }
+
+      h3 {
+        margin-bottom: 20px;
+        font-size: 24px;
+      }
+
+      .subject {
+        font-weight: bolder;
+        font-size: 18px;
+      }
+
+      p {
+        margin-bottom: 15px;
+      }
+
+      a {
+        display: block;
+        margin-bottom: 15px;
+      }
+
+      .email, .map, .phone {
+        color: cornflowerblue;
+      }
+
+      .map{
+        border-bottom: 1px dashed cornflowerblue;
+        display: inline-block;
+      }
+    }
+  }
+
+  @media (max-width: 585px){
+    .teacher-info{
+      max-width: 450px;
+    }
+    #info-card-photo {
+      width: 200px;
+      height: 200px;
+      margin-right: 10px;
+    }
+    #info-card-star {
+      width: 30px;
+      height: 30px;
+    }
+    #info-card-title{
+      font-size: 20px;
+    }
+    #p-subject{
+      font-size: 18px;
+    }
+    #p-address, #p-per-data, #a-email,#a-phone, #a-map{
+      font-size: 14px;
+    }
+    #p-comment{
+      font-size: 12px;
+    }
+  }
+
+@media (max-width: 485px){
+  .teacher-info{
+    max-width: 350px;
+  }
+  #info-card-photo {
+    width: 120px;
+    height: 120px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+  }
+  #info-card-star {
+    width: 30px;
+    height: 30px;
+  }
+  #info-card-title{
+    font-size: 18px;
+    margin-bottom: 2px;
+  }
+  #p-subject{
+    font-size: 16px;
+    margin-bottom: 2px;
+  }
+  #p-address, #p-per-data, #a-email,#a-phone, #a-map{
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  #p-comment{
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 360px) {
+  .teacher-info {
+    max-width: 315px;
+  }
+}
