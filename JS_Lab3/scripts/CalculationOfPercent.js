@@ -7,10 +7,10 @@ let foundPersons = unionArray.filter(searchFunction)
 percentOfPersonsFound(foundPersons.length)
 function percentOfPersonsFound (amount){
     let percent = Math.round( amount * 100 / unionArray.length)
-    console.log(`100% - ${unionArray.length}\n${percent}% - ${foundPersons.length}`)
+    // console.log(`100% - ${unionArray.length}\n${percent}% - ${foundPersons.length}`)
 }
 
-console.log()
+// console.log()
 
 searchFunction = (person) => person.favorite === true
 

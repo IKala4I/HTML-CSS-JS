@@ -1,12 +1,11 @@
 import {unionArray} from "./Union.js";
 
-const validEmailRegex =  /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-
-function validateData(persons){
+function validateData(persons) {
     checkStringValues(persons)
     checkAge(persons)
     checkEmail(persons)
 }
+
 function checkStringValues(persons) {
     persons.forEach(person => isCorrectStringValues(person))
 }
@@ -14,7 +13,7 @@ function checkStringValues(persons) {
 function checkAge(persons) {
     persons.forEach(person => {
         if (hasPersonProp(person, 'age')) {
-            if (Number.isInteger(person.age) === false)
+            if (Number.isInteger(person.age))
                 console.log(`${person.id} has an incorrect value in the property - age\ntype of value - ${typeof person.age}\nvalue - ${person.age}\n`)
         }
     })
@@ -23,7 +22,9 @@ function checkAge(persons) {
 function checkEmail(persons) {
     persons.forEach(person => {
         if (hasPersonProp(person, 'email')) {
-            if (!person.email.match(validEmailRegex)) // === false doesn't work
+            if (person.email !== null && person.email.match(
+                /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)
+                === null)
                 console.log(`${person.id} has an incorrect value in the property - email\ntype of value - ${typeof person.email}\nvalue - ${person.email}\n`)
         }
     })
@@ -73,7 +74,7 @@ const isStringWithUpperCase = (prop) => {
     }
 }
 const isString = (prop) => {
-    if (prop != null) {
+    if (prop) {
         return typeof prop === 'string'
     } else {
         return false
