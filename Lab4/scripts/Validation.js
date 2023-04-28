@@ -1,5 +1,3 @@
-import {unionArray} from "./Union.js";
-
 function validateData(persons) {
     checkStringValues(persons)
     checkAge(persons)

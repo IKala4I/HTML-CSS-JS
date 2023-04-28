@@ -1,29 +1,49 @@
-import {unionArray} from "./Union.js";
+import {domElements, teachers} from "./Constants.js";
+import {generateCards} from "./generateCards.js";
+import {createPopup} from "./createFullCardInfo.js";
 
-let result = findPersonByParamAndValue('age', 24)
-console.log(result)
-function findPersonByParamAndValue(param, value){
-    if(param === 'name')
-        return findPersonByName(value)
-    else if(param === 'note')
-        return findPersonByNote(value)
-    else if(param === 'age')
-        return findPersonByAge(value)
+export function turnOnSearching() {
+    let searchValue = ''
+
+    domElements.searchInput.oninput = (event) => {
+        searchValue = event.target.value
+    }
+
+    domElements.searchTeacherButton.onclick = () => {
+        const foundTeachers = generateCards(filterSearch(searchValue))
+        domElements.topCards.innerHTML = foundTeachers.join('')
+        createPopup()
+    }
 }
-function findPersonByName(name){
-    return unionArray.find(person => {
-        return person.full_name.includes(name)
+
+function filterSearch(searchValue) {
+    const rgx = new RegExp(searchValue, 'i')
+    return teachers.filter(teacher => {
+        debugger
+        if (hasOnlyPositiveDigits(searchValue)) {
+            return checkCardsByAge(searchValue, teacher)
+        } else {
+            return checkCardsByString(rgx, teacher, ['fullName', 'note'])
+        }
     })
 }
 
-function findPersonByNote(note){
-    return unionArray.find(person => {
-        return person.note === note
-    })
+function hasOnlyPositiveDigits(value) {
+    return /^\d+$/.test(value);
 }
 
-function findPersonByAge(age){
-    return unionArray.find(person => {
-        return person.age === age
+function checkCardsByString(rgx, teacher, arrayOfArgs) {
+    let state = false
+    arrayOfArgs.every(arg => {
+        if (rgx.test(teacher[arg])) {
+            state = true
+            return false
+        }
+        return true
     })
+    return state
+}
+
+function checkCardsByAge(searchValue, teacher) {
+    return searchValue === teacher.age.toString()
 }

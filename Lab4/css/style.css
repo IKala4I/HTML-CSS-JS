@@ -4,7 +4,7 @@ html {
     position: relative;
 }
 
-ul{
+ul {
     list-style-type: none;
 }
 
@@ -61,7 +61,7 @@ hr {
     padding: 10px 15px;
 }
 
-.submit-btn:hover, .add-btn:hover{
+.submit-btn:hover, .add-btn:hover {
     background-color: indianred;
     color: white;
     cursor: pointer;
@@ -74,6 +74,7 @@ hr {
 .header-input {
     padding: 10px 5px;
 }
+
 .menu {
     list-style: none;
     display: flex;
@@ -94,11 +95,11 @@ hr {
     font-weight: 600;
 }
 
-.menu-item a{
+.menu-item a {
     color: inherit;
 }
 
-.menu-item a:hover{
+.menu-item a:hover {
     color: darkred;
 }
 
@@ -106,32 +107,37 @@ hr {
     text-align: center;
 }
 
-.top-form {
+.filters {
+    display: grid;
+    grid-template-columns: repeat(5, auto);
+    grid-column-gap: 30px;
     margin-bottom: 40px;
     font-size: 16px;
+    align-items: center;
 }
 
-.top-form label {
-    padding: 0 10px;
-    border-right: 1px dotted black;
-    color: darkgrey;
+.filters fieldset {
+    padding: 2px 8px 6px;
+    width: 150px;
 }
 
-.top-form label:last-of-type {
+.filters legend {
+    font-size: 14px;
+    color: #777;
+}
+
+.filter {
     border: none;
-    padding: 0 0 0 10px;
+    font-size: 18px;
+    width: 100%;
+    overflow: unset;
 }
 
-.top-form label:first-of-type {
-    padding: 0 10px 0 0;
+#country-input::placeholder{
+    color: black;
 }
 
-.top-form select {
-    margin-left: 10px;
-    padding: 5px;
-}
-
-.top-cards-list, .teacher-card {
+.top-cards, .favorite-teachers {
     display: grid;
     grid-template-columns: repeat(5, auto);
     grid-template-rows: auto;
@@ -140,29 +146,29 @@ hr {
     justify-content: space-between;
 }
 
-.top-cards-item h3, .teacher-item h3 {
+.card {
+    position: relative;
+}
+
+.card-info h3 {
     margin: 5px 0;
     font-size: 24px;
 }
 
-.top-cards-item .subject {
+.card-info .subject {
     margin-bottom: 5px;
     color: darkgrey;
     font-size: 16px;
 }
 
-.top-cards-item, .teacher-item .country {
+.card-info .country {
     font-size: 12px;
 }
 
-.top-cards img:not(.star), .teacher-card img {
+.card img:not(.star) {
     border-radius: 50%;
     max-width: 150px;
     border: 4px solid #b55959;
-}
-
-.star-card{
-    position: relative;
 }
 
 .star {
@@ -170,10 +176,12 @@ hr {
     height: 50px;
     background-color: transparent;
     right: 0;
+    top: 0;
 }
 
 .p-circle {
-    height: 150px;
+    height: 128px;
+    width: 128px;
     background-color: #fff;
     border-radius: 50%;
     display: flex;
@@ -285,7 +293,7 @@ hr {
 /*    border: none;*/
 /*}*/
 
-.arrow img{
+.arrow img {
     width: 120px;
 }
 
@@ -303,7 +311,7 @@ hr {
     right: 0;
 }
 
-.comment-item{
+.comment-item {
     margin-bottom: 5px;
 }
 
@@ -321,243 +329,265 @@ hr {
     margin-left: auto;
 }
 
-@media (max-width:1430px){
-    .arrow-right{
+@media (max-width: 1430px) {
+    .arrow-right {
         right: -30px;
     }
-    .arrow-left{
+
+    .arrow-left {
         left: -30px;
     }
 }
 
-@media (max-width: 1370px){
-    .arrows{
+@media (max-width: 1370px) {
+    .arrows {
         display: none;
     }
-    .card-navigation{
+
+    .card-navigation {
         display: inline-block;
     }
 }
 
-@media (max-width: 1260px){
-    h2{
+@media (max-width: 1260px) {
+    h2 {
         font-size: 30px;
     }
-    .header, .footer{
+
+    .header, .footer {
         font-size: 18px;
     }
-    .header-title{
+
+    .header-title {
         font-size: 40px;
     }
-    .top-form{
+
+    .filters {
         font-size: 14px;
     }
-    .top-cards img:not(.star), .teacher-card img {
+
+    .card img:not(.star) {
         max-width: 120px;
     }
-    .top-cards-item h3, .teacher-item h3 {
+
+    .card-info h3 {
         font-size: 18px;
     }
-    .top-cards-item .subject {
+
+    .card-info .subject {
         font-size: 14px;
     }
-    .top-cards-item, .teacher-item .country {
+
+    .card-info .country {
         font-size: 10px;
     }
+
     .p-circle {
         height: 120px;
+        width: 120px;
         font-size: 18px;
     }
 }
 
-@media (max-width: 780px){
-    .top-cards-list, .teacher-card{
+@media (max-width: 780px) {
+    .top-cards {
         grid-template-columns: repeat(3, auto);
     }
-    .teacher-card .next{
-        grid-column: 3;
-    }
-    .top-form label:nth-child(4) {
-        flex-basis: 45%;
-    }
-    .top-form {
-        display: flex;
-        flex-wrap: wrap;
-    }
-    .top-form label{
-        margin-bottom: 10px;
-        border:none;
-        flex-grow: 1;
-        flex-shrink: 0;
+
+    .filters {
+        grid-template-columns: repeat(3, auto);
+        row-gap: 15px;
     }
 }
 
-@media(max-width: 700px){
+@media (max-width: 700px) {
     .header .menu {
         list-style: none;
         display: flex;
         justify-content: space-between;
         flex-wrap: wrap;
     }
+
     .header .menu-item {
         padding-right: 0;
         flex-basis: 50%;
     }
+
     .statistics-table thead th {
         font-size: 16px;
     }
+
     .statistics-table tbody td {
         font-size: 14px;
     }
-    .b-link{
+
+    .b-link {
         font-size: 16px;
     }
 }
 
-@media (max-width: 560px){
-    .header-title{
+@media (max-width: 560px) {
+    .header-title {
         font-size: 30px;
     }
-    h2{
+
+    h2 {
         font-size: 26px;
     }
-    .header .menu{
+
+    .header .menu {
         flex-direction: column;
     }
+
     .submit-btn, .add-btn {
         padding: 5px 10px;
     }
-    .submit-btn{
+
+    .submit-btn {
         font-size: 10px;
     }
-    .header .add-btn{
+
+    .header .add-btn {
         font-size: 14px;
     }
+
     #form-submit {
         font-size: 20px;
     }
-    .header-input{
+
+    .header-input {
         font-size: 10px;
         padding: 5px 10px;
     }
-    .comment-item{
+
+    .comment-item {
         font-size: 14px;
     }
 }
 
-@media(max-width: 525px){
-    .top-form label {
-        padding: 0;
-    }
-    .top-cards img:not(.star), .teacher-card img {
+@media (max-width: 525px) {
+    .card img:not(.star) {
         max-width: 80px;
     }
-    .top-cards-item h3, .teacher-item h3 {
+
+    .card-info h3 {
         font-size: 14px;
     }
-    .top-cards-item .subject {
+
+    .card-info .subject {
         font-size: 12px;
     }
-    .top-cards-item, .teacher-item .country {
+
+    .card-info .country {
         font-size: 10px;
     }
+
     .p-circle {
         height: 80px;
+        width: 80px;
         font-size: 14px;
     }
-    .star{
+
+    .star {
         height: 30px;
     }
-    .footer .menu{
+
+    .footer .menu {
         flex-wrap: wrap;
     }
-    .footer .menu-item{
+
+    .footer .menu-item {
         padding-right: 0;
         flex-basis: 50%;
     }
+
     .footer .menu-item-btn {
         margin: 10px 0 0 0;
     }
 }
 
-@media(max-width: 485px){
-    .top-form label:nth-child(4) {
-        flex-basis: auto;
-    }
-    .top-form{
-        align-items: center;
-    }
+@media (max-width: 485px) {
     .statistics-table thead th {
         font-size: 14px;
     }
-    .b-link{
+
+    .b-link {
         font-size: 14px;
     }
+
     .statistics-table tbody td {
         font-size: 12px;
     }
+
     .form {
         width: 350px;
     }
-    .form .form-container .data-item{
+
+    .form .form-container .data-item {
         max-width: 50%;
         display: block;
         margin-bottom: 15px;
     }
-    #birthday, #sex, #form-color{
+
+    #birthday, #sex, #form-color {
         width: 196px;
     }
+
     .form .form-container textarea {
         resize: none;
     }
 }
 
-@media(max-width:430px){
-    .header-input{
+@media (max-width: 430px) {
+    .header-input {
         display: block;
         margin: 5px 0;
     }
+
     .submit-btn, .add-btn {
         display: block;
         margin: 0 auto;
     }
+
     table, th, td {
         border: 1px solid black;
         border-collapse: collapse;
     }
-    .comment-item{
+
+    .comment-item {
         font-size: 12px;
     }
 }
 
-@media(max-width: 380px) {
-    .top-form {
-        flex-direction: column;
-    }
-    .header-title{
+@media (max-width: 380px) {
+    .header-title {
         font-size: 20px;
     }
-    h2{
+
+    h2 {
         font-size: 16px;
     }
-    .menu{
+
+    .menu {
         font-size: 14px;
     }
-    .add-btn{
+
+    .add-btn {
         font-size: 10px;
     }
-    .top-form label{
-        font-size: 12px;
-    }
+
     .statistics-table thead th {
         font-size: 12px;
     }
+
     .statistics-table tbody td {
         font-size: 10px;
     }
-    .b-link{
+
+    .b-link {
         font-size: 12px;
     }
+
     .form {
         width: 300px;
     }
