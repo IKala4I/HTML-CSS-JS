@@ -1,3 +1,10 @@
+import {domElements} from "./Constants.js";
+import {createPopup} from "./createFullCardInfo.js";
+
+export function createTopCards(teachers){
+    domElements.topCards.innerHTML = generateCards(teachers).join('')
+    createPopup()
+}
 export function generateCards(teachers) {
     const cards = []
 

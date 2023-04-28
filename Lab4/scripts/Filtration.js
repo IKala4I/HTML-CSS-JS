@@ -1,22 +1,10 @@
-import {domElements, teachers, countries} from "./Constants.js";
-import {generateCards} from "./generateCards.js";
-
-export function getCountries() {
-    domElements.countries.innerHTML = getOptions()
-}
-
-function getOptions() {
-    let options = `<option value="All" class="region-option"></option>`
-    countries.forEach(country => {
-        options += `<option value="${country.name}" class="region-option"></option>`
-    })
-    return options
-}
+import {domElements, teachers} from "./Constants.js";
+import {createTopCards} from "./generateCards.js";
 
 export function setHandleOnFilters() {
     domElements.countryInput.oninput = (event) => {
         let optionFound = false
-        // Determine whether an option exists with the current value of the input.
+
         for (let j = 0; j < document.getElementById('country-list').options.length; j++) {
             if (event.target.value === document.getElementById('country-list').options[j].value) {
                 optionFound = true;
@@ -27,13 +15,13 @@ export function setHandleOnFilters() {
         if (optionFound && event.target.value !== 'All') {
             event.target.style.border = "none"
             let filteredCards = filterCardsByCountry(event.target.value)
-            domElements.topCards.innerHTML = generateCards(filteredCards).join('')
+            createTopCards(filteredCards)
         } else if (event.target.value === 'All') {
             event.target.style.border = "none"
-            domElements.topCards.innerHTML = generateCards(teachers).join('')
+            createTopCards(teachers)
         } else if (event.target.value === '') {
             event.target.style.border = "none"
-            domElements.topCards.innerHTML = generateCards(teachers).join('')
+            createTopCards(teachers)
         } else {
             event.target.style.border = "3px solid red"
         }
@@ -59,7 +47,7 @@ function handleChangeFilter(type) {
         } else {
             filteredCards = filterCardsByFavorite(event.target)
         }
-        domElements.topCards.innerHTML = generateCards(filteredCards).join('')
+        createTopCards(filteredCards)
     }
 }
 

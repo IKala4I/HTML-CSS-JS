@@ -1,6 +1,5 @@
 import {domElements, teachers} from "./Constants.js";
-import {generateCards} from "./generateCards.js";
-import {createPopup} from "./createFullCardInfo.js";
+import {createTopCards} from "./generateCards.js";
 
 export function turnOnSearching() {
     let searchValue = ''
@@ -10,9 +9,7 @@ export function turnOnSearching() {
     }
 
     domElements.searchTeacherButton.onclick = () => {
-        const foundTeachers = generateCards(filterSearch(searchValue))
-        domElements.topCards.innerHTML = foundTeachers.join('')
-        createPopup()
+        createTopCards(filterSearch(searchValue))
     }
 }
 

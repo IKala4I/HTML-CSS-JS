@@ -2,6 +2,8 @@ export const domElements = {
     topCards: document.querySelector('.top-cards'),
     searchInput: document.querySelector('.header-input'),
     searchTeacherButton: document.querySelector('.submit-btn'),
+    openAddTeacherFormButtons: document.querySelectorAll('.add-btn-a'),
+    addTeacherSubmit: document.getElementById('form-container'),
     favoriteTeachers: document.querySelector('.favorite-teachers'),
     filters: {
         age: document.querySelector('.filter-age'),
@@ -10,8 +12,11 @@ export const domElements = {
         favorite: document.querySelector('.filter-favorite')
     },
     countries: document.querySelector('.filter-country'),
+    popupCountries: document.getElementById('popup-country-list'),
+    addTeacherForm: document.getElementById('myForm'),
     teacherFullCard: document.getElementById('teacher-info-popup'),
     countryInput: document.getElementById('country-input'),
+    popupCountryInput: document.getElementById('popup-country-input'),
     statisticTable: document.querySelector('.statistics-table'),
     statisticTableBody: document.querySelector('.statistic-table-body')
 }

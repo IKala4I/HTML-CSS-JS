@@ -34,7 +34,7 @@
                 </li>
             </ul>
         </nav>
-        <a class="add-btn" href="#myForm">Add teacher</a>
+        <a class="add-btn add-btn-a" href="#myForm">Add teacher</a>
     </div>
 </header>
 <main class="main">
@@ -194,7 +194,7 @@
                     <a href="#foot" class="menu-link">About</a>
                 </li>
                 <li class="menu-item-btn">
-                    <a class="add-btn" href="#myForm">Add teacher</a>
+                    <a class="add-btn add-btn-a" href="#myForm">Add teacher</a>
                 </li>
             </ul>
         </nav>
@@ -208,33 +208,30 @@
         </div>
         <form action="#" class="form-container" id="form-container">
             <label for="name">Name</label>
-            <input class="form-item name" type="text" maxlength="30" id="name" pattern="(^[A-Za-z]{3,16})"
+            <input class="form-item name" type="text" id="name" pattern="(^[A-Za-z]{3,16})"
                    placeholder="Enter name" required>
 
             <label for="speciality">Speciality</label>
             <select class="form-item speciality" name="specialities" id="speciality" required>
                 <option value="Mathematics">Mathematics</option>
-                <option value="Art">Art</option>
-                <option value="Chess">Chess</option>
-                <option value="Biology">Biology</option>
-                <option value="ComputerScience">Computer Science</option>
+                <option value="Physics">Physics</option>
                 <option value="English">English</option>
+                <option value="Computer-Science">Computer Science</option>
+                <option value="Dancing">Dancing</option>
+                <option value="Chess">Chess</option>
                 <option value="Chemistry">Chemistry</option>
+                <option value="Biology">Biology</option>
+                <option value="Law">Law</option>
+                <option value="Art">Art</option>
+                <option value="Medicine">Medicine</option>
                 <option value="Statistics">Statistics</option>
             </select>
 
             <div class="flex-data">
                 <div class="data-item">
-                    <label>Country
-                        <input type="text" list="countries" required>
-                    </label>
-                    <datalist id="countries">
-                        <option value="Ukraine"></option>
-                        <option value="Poland"></option>
-                        <option value="UK"></option>
-                        <option value="US"></option>
-                        <option value="Germany"></option>
-                        <option value="France"></option>
+                    <label for="popup-country-input">Country</label>
+                    <input id="popup-country-input" class="country-input" type="text" list="popup-country-list" required>
+                    <datalist id="popup-country-list" class="country-list">
                     </datalist>
                 </div>
                 <div class="form-item data-item">
@@ -248,32 +245,32 @@
                 </div>
                 <div class="form-item data-item">
                     <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{2}-[0-9]{2}" required>
+                    <input type="tel" id="phone" name="phone" pattern="^[0-9*#+-/()]+$" required>
                 </div>
             </div>
 
             <label for="birthday">Date of birth</label>
-            <input class="form-item birthday" type="date" id="birthday" lang="en" required> <! ? -->
+            <input class="form-item birthday" type="date" id="birthday" required>
             <div id="sex" class="form-item sex">
                 <span>Sex</span>
                 <label>Male
-                    <input type="radio" name="sex">
+                    <input type="radio" name="sex-teacher-form" value="male">
                 </label>
                 <label>Female
-                    <input type="radio" name="sex">
+                    <input type="radio" name="sex-teacher-form" value="female">
                 </label>
             </div>
 
             <div id="form-color" class="form-item color">
-                <label for="favcolor">Background color</label>
+                <label for="favorite-color">Background color</label>
                 <img class="back-color" src="./Images/color.svg" alt="color">
-                <input type="color" id="favcolor">
+                <input type="color" id="favorite-color">
             </div>
 
             <label for="comment">Notes (optional)</label>
             <textarea class="form-item notes" id="comment" rows="5" cols="20"></textarea>
 
-            <input type="submit" id="form-submit" class="form-item add-btn submit" value="Add">
+            <button type="submit" id="form-submit" class="form-item add-btn submit">Add</button>
         </form>
     </div>
 </div>

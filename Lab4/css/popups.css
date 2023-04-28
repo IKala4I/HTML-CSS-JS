@@ -1,17 +1,11 @@
 .form-popup {
-    visibility: hidden;
+    display: none;
     width: 100%;
     height: 100%;
     top: 0;
     position: absolute;
     background: rgba(0, 0, 0, 0.7);
-    opacity: 0;
     transition: opacity 500ms;
-}
-
-.form-popup:target {
-    visibility: visible;
-    opacity: 1;
 }
 
 .form {
@@ -19,7 +13,7 @@
     background-color: white;
     position: relative;
     margin: 0 auto;
-    top: 25%;
+    top: 25vh;
     transition: 3s ease;
 }
 
@@ -184,7 +178,7 @@
     right: 0;
 }
 
-.teacher-card-star:hover{
+.teacher-card-star:hover {
     cursor: pointer;
 }
 

@@ -1,5 +1,6 @@
 import {domElements, teachers} from "./Constants.js";
 import {generateFavoriteCards} from "./generateCardsFavoriteTeachers.js";
+import {createTopCards} from "./generateCards.js";
 
 export function createPopup() {
     document.querySelectorAll('.full-card-info').forEach(a => handleClickOpenTeacherCard(a))
@@ -43,6 +44,11 @@ function setMutationObserver(divCard) {
 
 function setHandleEventClose() {
     document.querySelectorAll('.close').forEach(a => handleClickCloseTeacherCard(a))
+    window.onclick = function (event) {
+        if (event.target.className === "teacher-info-popup") {
+            event.target.style.display = "none";
+        }
+    }
 }
 
 function handleClickCloseTeacherCard(a) {
@@ -61,19 +67,15 @@ function handleClickOnStarTeacherCard(img, index, divCard) {
             teachers[index].favorite = true
             generateFavoriteCards(teachers.filter(teacher => teacher.favorite))
             divCard.classList.add('star-card')
+            createTopCards(teachers)
         } else {
             event.target.classList.replace('favorite-star', 'not-favorite-star')
             event.target.src = './Images/not_favorite.png'
             teachers[index].favorite = false
             generateFavoriteCards(teachers.filter(teacher => teacher.favorite))
             divCard.classList.remove('star-card')
+            createTopCards(teachers)
         }
-    }
-}
-
-window.onclick = function (event) {
-    if (event.target.className === "teacher-info-popup") {
-        event.target.style.display = "none";
     }
 }
 
