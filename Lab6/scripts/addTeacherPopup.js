@@ -61,7 +61,6 @@ function postTeacherOnServer() {
     const formElements = document.getElementById('add-teacher-form')
     const formData = new FormData(formElements)
     const data = Object.fromEntries(formData)
-    console.log(JSON.stringify(data))
     fetch('http://localhost:3000/teachers', {
         method: 'POST',
         headers: {
@@ -69,7 +68,5 @@ function postTeacherOnServer() {
         },
         body: JSON.stringify(data)
     }).then(res => res.json())
-        .then(data => console.log(data))
         .catch(error => console.log(error))
-
 }

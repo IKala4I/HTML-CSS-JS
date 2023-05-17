@@ -3,10 +3,11 @@ import {displayCards} from "./generateCards.js";
 
 let teachers
 
-export function setTeachersOnPopup(newTeachers){
+export function setTeachersOnPopup(newTeachers) {
     teachers = newTeachers
     createPopup()
 }
+
 function createPopup() {
     document.querySelectorAll('.full-card-info').forEach(a => handleClickOpenTeacherCard(a))
 }
@@ -20,6 +21,7 @@ function handleClickOpenTeacherCard(a) {
         setHandleEventClose()
         setHandleEventClickOnStar(index, divCard)
         setMutationObserver(divCard)
+        setHandleEventClickOnMap(index)
     }
 }
 
@@ -82,6 +84,25 @@ function handleClickOnStarTeacherCard(img, index, divCard) {
     }
 }
 
+function setHandleEventClickOnMap(index) {
+    const a = document.getElementById('a-map')
+    a.onclick = () => {
+        const data = teachers[index].coordinates
+        postCoordinatesOnServer(data)
+    }
+}
+
+function postCoordinatesOnServer(data) {
+    fetch('http://localhost:3000/coordinates', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    }).then(res => res.json())
+        .catch(error => console.log(error))
+}
+
 function getPopup(index) {
     const teacher = teachers[index]
     const gender = teacher.gender
@@ -124,14 +145,29 @@ function getPopup(index) {
                     <p id="p-subject" class="subject">${teacher.course}</p>
                     <p id="p-address">${teacher?.city}, ${teacher?.country}</p>
                     <p id="p-per-data">${teacher.age}, ${gender}</p>
+                    <p>${getDaysToBirthday(index)} days to next birthday</p>
                     ${email}
                     ${phone}
                 </div>
             </div>
             <p id="p-comment">${teacher.note}</p>
-            <a id="a-map" class="map" target="_blank">toggle map</a>
+            <a id="a-map" class="map-a" target="_blank" href="./testMap.html">toggle map</a>
         </div>
     </div>`
 
     return content
+}
+
+function getDaysToBirthday(index) {
+    const birthdayDate = dayjs(dayjs(teachers[index].bDate).format("MM-DD"))
+    const dateNow = dayjs().format("MM-DD")
+    if (dayjs(dateNow).isBefore(birthdayDate)) {
+        return birthdayDate.diff(dateNow, 'days')
+    } else {
+        const fullDateNow = dayjs()
+        const yearNow = Number(fullDateNow.format("YYYY"))
+        const nextYear = (yearNow + 1).toString()
+        const nextBirthdayDate = dayjs(`${nextYear}-${birthdayDate.format("MM-DD")}`)
+        return nextBirthdayDate.diff(fullDateNow, 'days')
+    }
 }

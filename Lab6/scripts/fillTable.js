@@ -1,7 +1,9 @@
 import {domElements} from "./Constants.js"
+import {createPiecharts} from "./createPiecharts.js";
 export function uploadDataToStatisticTable(teachers) {
     const tableBody = domElements.statisticTableBody
     tableBody.innerHTML = createRows(teachers)
+    createPiecharts(teachers)
 }
 export function createRows(teachers){
     let content =``

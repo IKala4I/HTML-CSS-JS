@@ -8,15 +8,11 @@ export function setSortTable(teachers) {
 }
 
 function sortTable(prop, th, teachers) {
-    debugger
-    console.log(teachers)
     let sortedArray
     if (th.getAttribute('data-sort') === 'asc') {
-        console.log(th.getAttribute('data-sort'))
         th.setAttribute('data-sort', 'dsc')
         sortedArray = sortByAsc(prop, teachers)
     } else {
-        console.log(th.getAttribute('data-sort'))
         th.setAttribute('data-sort', 'asc')
         sortedArray = sortByDsc(prop, teachers)
     }

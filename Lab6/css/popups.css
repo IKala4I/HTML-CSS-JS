@@ -201,13 +201,17 @@
     margin-bottom: 15px;
 }
 
-.teacher-info .teacher-card-info .email, .teacher-info .teacher-card-info .map, .teacher-info .teacher-card-info .phone {
+.teacher-info .teacher-card-info .email, .teacher-info .teacher-card-info .map-a, .teacher-info .teacher-card-info .phone {
     color: cornflowerblue;
 }
 
-.teacher-info .teacher-card-info .map {
+.teacher-info .teacher-card-info .map-a {
     border-bottom: 1px dashed cornflowerblue;
     display: inline-block;
+}
+
+#map{
+    height: 200px;
 }
 
 @media (max-width: 585px) {

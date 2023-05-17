@@ -281,6 +281,11 @@ hr {
     cursor: pointer;
 }
 
+.charts{
+    display: flex;
+    flex-wrap: wrap;
+}
+
 .favorites {
     position: relative;
 }
