@@ -4,17 +4,20 @@ import {uploadDataToStatisticTable} from "./fillTable.js";
 import {setHandlerOnFilters} from "./Filtration.js";
 import {getCountries} from "./getCountries.js";
 import {handleAddTeacherForm} from "./addTeacherPopup.js";
-import {getRandomUsers} from "./getRandomUsers.js";
+import {getTeachers} from "./getTeachers.js";
 import {setHandlerOnMoreTeachersButton} from "./addMoreTeachers.js";
+import {setSortTable} from "./Sorting.js";
+import {getTeachersForPopup} from "./fullCardPopup.js";
 
-// setTeachersOnPopup(teachers)
 setHandlerOnFilters()
 turnOnSearching()
 handleAddTeacherForm()
 getCountries()
 setHandlerOnMoreTeachersButton()
 
-getRandomUsers(12).then(teachers => {
+getTeachers().then(teachers => {
     displayCards(teachers)
     uploadDataToStatisticTable(teachers)
+    setSortTable(teachers)
+    getTeachersForPopup(teachers)
 })

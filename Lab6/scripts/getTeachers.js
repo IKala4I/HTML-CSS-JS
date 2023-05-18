@@ -1,21 +1,24 @@
-import {domElements} from "./Constants.js";
-
-const courses = ['Mathematics', 'Physics', 'English', 'Computer Science', 'Dancing', 'Chess', 'Biology', 'Chemistry',
+const specialities = ['Mathematics', 'Physics', 'English', 'Computer Science', 'Dancing', 'Chess', 'Biology', 'Chemistry',
     'Law', 'Art', 'Medicine', 'Statistics']
 const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
 
-export async function getRandomUsers(count) {
-    domElements.topCards.innerHTML = `<h1>The teachers are being loading</h1>`
-    domElements.favoriteTeachers.innerHTML = ``
+export async function getTeachers() {
+    const response = await fetch(`http://localhost:3000/teachers`)
+    const teachers = await response.json()
+    return teachers
+}
+
+export async function getRandomTeachers(count){
     const response = await fetch(`https://randomuser.me/api/?results=${count}`)
-    const users = await response.json()
-    return convertRandomObj(users.results)
+    const teachers = await response.json()
+    const convertedTeachers = convertRandomObj(teachers.results)
+    return convertedTeachers
 }
 
 function convertRandomObj(usersObj) {
-    return usersObj.map(user => {
+    return _.map(usersObj, user => {
         return {
-            gender: user.gender,
+            sex: user.gender,
             title: user.name.title,
             fullName: `${user.name.first} ${user.name.last}`,
             city: user.location.city,
@@ -29,12 +32,10 @@ function convertRandomObj(usersObj) {
             age: user.dob.age,
             phone: user.phone,
             pictureLarge: user.picture.large,
-            id: user.id.value != null ? `${user.id.name}${user.id.value}`.replace(/\s/g, '') : user.login.uuid,
             favorite: Math.random() < 0.3,
-            course: courses[Math.round(Math.random() * (courses.length - 1))],
+            speciality: specialities[Math.round(Math.random() * (specialities.length - 1))],
             bgColor: '#' + `${Math.floor(Math.random() * 16777215).toString(16)}`,
-            note: generateString(7),
-            key: usersObj.indexOf(user)
+            note: generateString(7)
         }
     })
 }

@@ -1,8 +1,7 @@
 import {domElements} from "./Constants.js";
 import {displayCards} from "./generateCards.js";
 import {uploadDataToStatisticTable} from "./fillTable.js";
-import {getRandomUsers} from "./getRandomUsers.js";
-import {changeTeacherKey} from "./updateTeacher.js";
+import {getTeachers} from "./getTeachers.js";
 
 export function setHandlerOnFilters() {
     const filtersType = ['age', 'country', 'sex', 'pictureLarge', 'favorite']
@@ -11,7 +10,7 @@ export function setHandlerOnFilters() {
 
 function handleChangeFilter(type) {
     domElements.filters[type].onchange = event => {
-        getRandomUsers(50).then(teachers => {
+        getTeachers().then(teachers => {
             filterCards(event, teachers, type)
         })
     }
@@ -31,14 +30,13 @@ function filterCards(event, teachers, type) {
     } else {
         filteredCards = filterCardsByFavorite(event.target, teachers)
     }
-    filteredCards = changeTeacherKey(filteredCards)
     displayCards(filteredCards)
     uploadDataToStatisticTable(filteredCards)
 }
 
 function filterCardsByCountry(value, teachers) {
     if (value !== '')
-        return teachers.filter(teacher => teacher.country === value)
+        return _.filter(teachers, teacher => teacher.country === value)
     else
         return teachers
 }
@@ -48,7 +46,7 @@ function filterCardsByAge(value, teachers) {
         const ages = value.split('-')
         const minAge = Number(ages[0])
         const maxAge = Number(ages[1])
-        return teachers.filter(teacher => {
+        return _.filter(teachers, teacher => {
             return teacher.age >= minAge && teacher.age < maxAge
         })
     } else return teachers
@@ -56,22 +54,24 @@ function filterCardsByAge(value, teachers) {
 
 function filterCardsBySex(value, teachers) {
     if (value !== '') {
-        return teachers.filter(teacher => {
-            return teacher.gender === value
+        return _.filter(teachers, teacher => {
+            return teacher.sex === value
         })
     } else return teachers
 }
 
 function filterCardsByExistPhoto(checkbox, teachers) {
-    if (checkbox.checked) return teachers.filter(teacher => {
-        return teacher.pictureLarge !== null
-    })
+    if (checkbox.checked)
+        return _.filter(teachers, teacher => {
+            return teacher.pictureLarge !== null
+        })
     else return teachers
 }
 
 function filterCardsByFavorite(checkbox, teachers) {
-    if (checkbox.checked) return teachers.filter(teacher => {
-        return teacher.favorite
-    })
+    if (checkbox.checked)
+        return _.filter(teachers, teacher => {
+            return teacher.favorite
+        })
     else return teachers
 }

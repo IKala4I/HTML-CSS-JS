@@ -7,40 +7,15 @@ export function setSortTable(teachers) {
     })
 }
 
+
 function sortTable(prop, th, teachers) {
     let sortedArray
     if (th.getAttribute('data-sort') === 'asc') {
         th.setAttribute('data-sort', 'dsc')
-        sortedArray = sortByAsc(prop, teachers)
+        sortedArray = _.sortBy(teachers, [`${prop}`])
     } else {
         th.setAttribute('data-sort', 'asc')
-        sortedArray = sortByDsc(prop, teachers)
+        sortedArray = _.reverse(_.sortBy(teachers, [`${prop}`]))
     }
     uploadDataToStatisticTable(sortedArray)
-}
-
-function sortByAsc(prop, teachers) {
-    if (prop === 'age') {
-        return teachers.sort((a, b) => {
-            return a.age - b.age;
-        })
-    } else {
-        return teachers.sort((a, b) => {
-            let fa = a[prop].toLowerCase(),
-                fb = b[prop].toLowerCase();
-
-            if (fa < fb) {
-                return -1;
-            }
-            if (fa > fb) {
-                return 1;
-            }
-            return 0;
-        })
-    }
-}
-
-function sortByDsc(prop, teachers) {
-    let sortedArray = sortByAsc(prop, teachers)
-    return sortedArray.reverse()
 }

@@ -1,9 +1,14 @@
 import {domElements} from "./Constants.js";
 import {displayCards} from "./generateCards.js";
+import {getTeachers} from "./getTeachers.js";
 
 let teachers
 
-export function setTeachersOnPopup(newTeachers) {
+export function getTeachersForPopup(){
+    getTeachers().then(teachers => setTeachersOnPopup(teachers))
+}
+
+function setTeachersOnPopup(newTeachers) {
     teachers = newTeachers
     createPopup()
 }
@@ -81,6 +86,15 @@ function handleClickOnStarTeacherCard(img, index, divCard) {
             divCard.classList.remove('star-card')
             displayCards(teachers)
         }
+        const state = {favorite: teachers[index].favorite}
+        fetch(`http://localhost:3000/teachers/${teachers[index].id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(state)
+        }).then(res => res.json())
+            .catch(error => console.log(error))
     }
 }
 
@@ -105,7 +119,7 @@ function postCoordinatesOnServer(data) {
 
 function getPopup(index) {
     const teacher = teachers[index]
-    const gender = teacher.gender
+    const sex = teacher.sex
     const favorite = teacher.favorite
 
     let content = ``
@@ -113,7 +127,7 @@ function getPopup(index) {
     let phone = ``
     let img = ''
     if (teacher.pictureLarge === null) {
-        if (gender === 'male')
+        if (sex === 'male')
             img = './Images/man.jpg'
         else
             img = './Images/woman.jpg'
@@ -142,9 +156,9 @@ function getPopup(index) {
                 <img id="info-card-star" class="star teacher-card-star ${favorite ? 'favorite-star' : 'not-favorite-star'}" src="${favorite ? "./Images/favorite.png" : "./Images/not_favorite.png"}" alt="star">
                 <div class="card-info">
                     <h3 id="info-card-title">${teacher.fullName}</h3>
-                    <p id="p-subject" class="subject">${teacher.course}</p>
+                    <p id="p-subject" class="subject">${teacher.speciality}</p>
                     <p id="p-address">${teacher?.city}, ${teacher?.country}</p>
-                    <p id="p-per-data">${teacher.age}, ${gender}</p>
+                    <p id="p-per-data">${teacher.age}, ${sex}</p>
                     <p>${getDaysToBirthday(index)} days to next birthday</p>
                     ${email}
                     ${phone}

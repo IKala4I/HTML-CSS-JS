@@ -99,9 +99,9 @@
                 <thead>
                 <tr>
                     <th data-value="fullName" data-sort="asc">Name</th>
-                    <th data-value="course" data-sort="asc">Speciality</th>
+                    <th data-value="speciality" data-sort="asc">Speciality</th>
                     <th data-value="age" data-sort="asc">Age</th>
-                    <th data-value="gender" data-sort="asc">Sex</th>
+                    <th data-value="sex" data-sort="asc">Sex</th>
                     <th data-value="country" data-sort="asc">Country</th>
                 </tr>
                 </thead>
@@ -128,9 +128,9 @@
                 </ul>
             </div>
             <div id="piecharts" class="charts">
-                <canvas id="Chart-course" style="width:100%;max-width:600px"></canvas>
+                <canvas id="Chart-speciality" style="width:100%;max-width:600px"></canvas>
                 <canvas id="Chart-age" style="width:100%;max-width:600px"></canvas>
-                <canvas id="Chart-gender" style="width:100%;max-width:600px"></canvas>
+                <canvas id="Chart-sex" style="width:100%;max-width:600px"></canvas>
                 <canvas id="Chart-country" style="width:100%;max-width:600px"></canvas>
             </div>
         </div>
@@ -259,10 +259,10 @@
             <div id="sex" class="form-item sex">
                 <span>Sex</span>
                 <label>Male
-                    <input type="radio" name="gender" value="male" required>
+                    <input type="radio" name="sex" value="male" required>
                 </label>
                 <label>Female
-                    <input type="radio" name="gender" value="female" required>
+                    <input type="radio" name="sex" value="female" required>
                 </label>
             </div>
 
@@ -284,6 +284,6 @@
 <script type="module" src="scripts/Main.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-<script src="lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </body>
 </html>

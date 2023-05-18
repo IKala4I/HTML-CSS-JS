@@ -19,7 +19,8 @@ export const domElements = {
     statisticTable: document.querySelector('.statistics-table'),
     statisticTableBody: document.querySelector('.statistic-table-body'),
     addMoreTeacherButton: document.querySelector('.more-teacher-button'),
-    teacherPhone: document.getElementById('phone')
+    teacherPhone: document.getElementById('phone'),
+    divPiecharts:document.getElementById('piecharts')
 }
 
 // export const teachers = [

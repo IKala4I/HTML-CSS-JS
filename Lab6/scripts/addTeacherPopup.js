@@ -4,8 +4,7 @@ import {updateDataTeacher} from "./updateTeacher.js";
 
 function handeCountryChange() {
     domElements.popupCountries.onchange = (event) => {
-        const code = countries.find(country => country.name === event.target.value).mobileCode
-        domElements.teacherPhone.setAttribute('placeholder', code)
+        domElements.teacherPhone.value = _.find(countries, country => country.name === event.target.value).mobileCode
     }
 }
 
@@ -15,11 +14,11 @@ export function handleAddTeacherForm() {
     domElements.addTeacherSubmit.addEventListener('submit', (event) => {
         event.preventDefault()
         const teacher = {
-            gender: document.querySelector('input[name="gender"]:checked').value,
+            sex: document.querySelector('input[name="sex"]:checked').value,
             fullName: document.getElementById('name').value,
             city: document.getElementById('city').value,
             country: document.getElementById('form-country-list').value,
-            course: document.getElementById('speciality').value,
+            speciality: document.getElementById('speciality').value,
             email: document.getElementById('email').value,
             phone: document.getElementById('phone').value,
             bDate: document.getElementById('birthday').value,
@@ -39,6 +38,7 @@ export function handleAddTeacherForm() {
 
 function handleClickOpenAddTeacherForm(a) {
     a.onclick = () => {
+        domElements.teacherPhone.value = _.find(countries, country => country.name === 'Afghanistan').mobileCode
         domElements.addTeacherForm.style.display = 'block'
         setHandleEventClose()
     }

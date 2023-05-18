@@ -1,20 +1,35 @@
 import {domElements} from "./Constants.js";
-import {displayFavoriteCards} from "./displayFavoriteCards.js";
-import {setSortTable} from "./Sorting.js";
-import {setTeachersOnPopup} from "./fullCardPopup.js";
+import {removeFromPagePiecharts} from "./managePiecharts.js";
+import {getTeachersForPopup} from "./fullCardPopup.js";
 
 export function displayCards(teachers) {
-    displayTopCards(teachers)
-    displayFavoriteCards(teachers)
-    setTeachersOnPopup(teachers)
-    setSortTable(teachers)
+    if (teachers.length === 0) {
+        domElements.topCards.innerHTML = `<h1>Teachers not found</h1>`
+        domElements.favoriteTeachers.innerHTML = `<h1>There aren't favorite teachers</h1>`
+        domElements.statisticTableBody.innerHTML = `<td colspan="5" style="text-align: center; font-size: 24px;">There isn't any data to upload to the table</td>`
+        removeFromPagePiecharts()
+    } else {
+        if (numberFavoriteTeachers(teachers) === undefined) {
+            domElements.favoriteTeachers.innerHTML = `<h1>There aren't favorite teachers</h1>`
+            displayTopCards(teachers)
+        }
+        else {
+            displayFavoriteCards(teachers)
+            displayTopCards(teachers)
+        }
+    }
+    getTeachersForPopup(teachers)
 }
 
-export function displayTopCards(teachers) {
-    if (teachers.length === 0)
-        domElements.topCards.innerHTML = `<h1>Teachers not found</h1>`
-    else
-        domElements.topCards.innerHTML = generateCards(teachers).join('')
+function numberFavoriteTeachers(teachers) {
+    return _.find(teachers, teacher => teacher.favorite)
+}
+
+function displayTopCards(teachers) {
+    domElements.topCards.innerHTML = generateCards(teachers).join('')
+}
+function displayFavoriteCards(teachers) {
+    domElements.favoriteTeachers.innerHTML = generateCards(teachers.filter(teacher => teacher.favorite)).join('')
 }
 
 export function generateCards(teachers) {
@@ -27,7 +42,7 @@ export function generateCards(teachers) {
     return cards
 }
 
-export function getCard(teacher){
+export function getCard(teacher) {
     const teacherFullName = teacher.fullName.split(" ")
     const tName = teacherFullName[0]
     const tLastName = teacherFullName[1]
@@ -49,13 +64,13 @@ export function getCard(teacher){
         cardImg += `<img src="${teacher.pictureLarge}" alt="teachers photo">`
 
     cardContent += `
-        <div class = "${divClass}" data-key="${teacher.key}">
+        <div class = "${divClass}" data-key="${teacher.id-1}">
             <a class="full-card-info" href="#">${cardImg}</a>
              ${starImg}
             <div class="card-info">
                 <h3 class="card-name">${tName}</h3>
                 <h3 class="card-lastName">${tLastName}</h3>
-                <p class="subject">${teacher.course}</p>
+                <p class="subject">${teacher.speciality}</p>
                 <p class="country">${teacher.country}</p>
             </div>
         </div>`

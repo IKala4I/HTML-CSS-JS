@@ -1,8 +1,3 @@
-export function changeTeacherKey(filteredCards) {
-    for (let i = 0; i < filteredCards.length; i++)
-        filteredCards[i].key = i
-    return filteredCards
-}
 export function updateDataTeacher(teacher) {
     teacher.title = ''
     teacher.state = null
@@ -10,8 +5,8 @@ export function updateDataTeacher(teacher) {
     teacher.coordinates = null
     teacher.timezone = null
     teacher.age = null
-    teacher.picture_large = null
-    teacher.picture_thumbnail = null
+    teacher.pictureLarge = null
+    teacher.pictureThumbnail = null
     teacher.id = null
     return teacher
 }

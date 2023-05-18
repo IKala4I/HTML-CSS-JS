@@ -1,8 +1,7 @@
 import {domElements} from "./Constants.js";
 import {displayCards} from "./generateCards.js";
 import {uploadDataToStatisticTable} from "./fillTable.js";
-import {getRandomUsers} from "./getRandomUsers.js";
-import {changeTeacherKey} from "./updateTeacher.js";
+import {getTeachers} from "./getTeachers.js";
 
 export function turnOnSearching() {
     let searchValue = ''
@@ -12,7 +11,7 @@ export function turnOnSearching() {
     }
 
     domElements.searchTeacherButton.onclick = (event) => {
-        getRandomUsers(50).then(teachers => {
+        getTeachers().then(teachers => {
             doSearch(event, teachers, searchValue)
         })
     }
@@ -21,17 +20,13 @@ export function turnOnSearching() {
 function doSearch(event, teachers, searchValue) {
     event.preventDefault()
     const filteredCards = filterSearch(searchValue, teachers)
-    const fullFilteredCards = changeTeacherKey(filteredCards)
     uploadDataToStatisticTable(filteredCards)
-    if (filteredCards.length === 0)
-        domElements.topCards.innerHTML = `<h1>Teachers not found</h1>`
-    else
-        displayCards(filteredCards)
+    displayCards(filteredCards)
 }
 
 function filterSearch(searchValue, teachers) {
     const rgx = new RegExp(searchValue, 'i')
-    return teachers.filter(teacher => {
+    return _.filter(teachers, teacher => {
         if (hasOnlyPositiveDigits(searchValue)) {
             return checkCardsByAge(searchValue, teacher)
         } else {
@@ -46,7 +41,7 @@ function hasOnlyPositiveDigits(value) {
 
 function checkCardsByString(rgx, teacher, arrayOfArgs) {
     let state = false
-    arrayOfArgs.every(arg => {
+    _.every(arrayOfArgs, arg => {
         if (rgx.test(teacher[arg])) {
             state = true
             return false
