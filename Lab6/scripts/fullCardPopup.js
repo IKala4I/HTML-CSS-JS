@@ -1,10 +1,11 @@
 import {domElements} from "./Constants.js";
 import {displayCards} from "./generateCards.js";
 import {getTeachers} from "./getTeachers.js";
+import {showMap} from "./testMap.js";
 
 let teachers
 
-export function getTeachersForPopup(){
+export function getTeachersForPopup() {
     getTeachers().then(teachers => setTeachersOnPopup(teachers))
 }
 
@@ -15,6 +16,11 @@ function setTeachersOnPopup(newTeachers) {
 
 function createPopup() {
     document.querySelectorAll('.full-card-info').forEach(a => handleClickOpenTeacherCard(a))
+}
+
+export function createPopupOnAddedCard(newTeachers, a) {
+    teachers = newTeachers
+    createPopup()
 }
 
 function handleClickOpenTeacherCard(a) {
@@ -103,6 +109,9 @@ function setHandleEventClickOnMap(index) {
     a.onclick = () => {
         const data = teachers[index].coordinates
         postCoordinatesOnServer(data)
+        showMap()
+        const map = document.getElementById('map')
+        map.removeAttribute('hidden')
     }
 }
 
@@ -165,10 +174,11 @@ function getPopup(index) {
                 </div>
             </div>
             <p id="p-comment">${teacher.note}</p>
-            <a id="a-map" class="map-a" target="_blank" href="./testMap.html">toggle map</a>
+            <a id="a-map" class="map-a">toggle map</a><!--target="_blank" href="./testMap.html-->
         </div>
+        <div id="map" hidden></div>
     </div>`
-
+    console.log(content)
     return content
 }
 

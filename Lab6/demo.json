@@ -119,7 +119,7 @@
       "age": 37,
       "phone": "05-77-11-33-94",
       "pictureLarge": "https://randomuser.me/api/portraits/women/77.jpg",
-      "favorite": false,
+      "favorite": true,
       "speciality": "Chemistry",
       "bgColor": "#ba20",
       "note": "hpzUeBR AvsAmOu PPzUoVJ lARyqDq KWSYIPJ pOxbQUG NuqQKQj",
@@ -146,7 +146,7 @@
       "age": 56,
       "phone": "(659) 570 5119",
       "pictureLarge": "https://randomuser.me/api/portraits/women/31.jpg",
-      "favorite": false,
+      "favorite": true,
       "speciality": "Statistics",
       "bgColor": "#bb0d3",
       "note": "AnIJYYm rgYxdMP RCyTrDC BCTaljh ozSkcGF xWZcfJG aGteQIh",
@@ -740,7 +740,7 @@
       "age": 42,
       "phone": "31907766",
       "pictureLarge": "https://randomuser.me/api/portraits/men/97.jpg",
-      "favorite": false,
+      "favorite": true,
       "speciality": "Chemistry",
       "bgColor": "#47afba",
       "note": "WfaDzFV YUxwYms RzzrDdC MMaOwYW SGeqDCH uSjbQYB uGFPIKd",
@@ -826,10 +826,37 @@
       "bgColor": "#d485b6",
       "note": "NnHVrUT gPufMpp tZPmZVa uGmmxDu xyJNxCe wWblsNw nByBaPx",
       "id": 30
+    },
+    {
+      "fullName": "Pershko Vladyslav",
+      "speciality": "English",
+      "country": "Armenia",
+      "city": "Kyiv",
+      "email": "vpersko@gmail.com",
+      "phone": "+374",
+      "bDate": "2023-05-02",
+      "sex": "male",
+      "bgColor": "#000000",
+      "note": "",
+      "id": 31,
+      "favorite": false
+    },
+    {
+      "fullName": "Oleg Kovalchuk",
+      "speciality": "Chess",
+      "country": "Armenia",
+      "city": "Kherson",
+      "email": "olegkoval1029@gmail.com",
+      "phone": "+93",
+      "bDate": "2004-03-11",
+      "sex": "male",
+      "bgColor": "#000000",
+      "note": "",
+      "id": 32
     }
   ],
   "coordinates": {
-    "latitude": "-30.3580",
-    "longitude": "47.8630"
+    "latitude": "18.0900",
+    "longitude": "179.3902"
   }
 }

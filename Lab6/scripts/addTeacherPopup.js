@@ -1,6 +1,8 @@
 import {countries, domElements} from "./Constants.js";
 import {getCard} from "./generateCards.js";
 import {updateDataTeacher} from "./updateTeacher.js";
+import {createPopupOnAddedCard} from "./fullCardPopup.js";
+import {getTeachers} from "./getTeachers.js";
 
 function handeCountryChange() {
     domElements.popupCountries.onchange = (event) => {
@@ -27,10 +29,16 @@ export function handleAddTeacherForm() {
             note: document.getElementById('comment').value,
             bgColor: document.getElementById('favorite-color').value
         }
+
         const fullDataTeacher = updateDataTeacher(teacher)
         postTeacherOnServer()
         const teacherCard = getCard(fullDataTeacher)
         domElements.topCards.innerHTML += teacherCard
+        const a = getANewCard()
+        getTeachers().then(teachers => {
+            createPopupOnAddedCard(teachers, a)
+            }
+        )
         alert('New Teacher has been added')
         domElements.addTeacherForm.style.display = 'none'
     })
@@ -69,4 +77,12 @@ function postTeacherOnServer() {
         body: JSON.stringify(data)
     }).then(res => res.json())
         .catch(error => console.log(error))
+}
+
+function getANewCard() {
+    const nodes = domElements.topCards
+    const children = nodes.children
+    const card = children[children.length - 1]
+    const a = card.firstElementChild
+    return a
 }

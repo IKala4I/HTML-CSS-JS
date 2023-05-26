@@ -208,6 +208,7 @@
 .teacher-info .teacher-card-info .map-a {
     border-bottom: 1px dashed cornflowerblue;
     display: inline-block;
+    cursor: pointer;
 }
 
 #map{
