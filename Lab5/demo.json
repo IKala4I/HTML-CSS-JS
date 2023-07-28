@@ -17,6 +17,18 @@
     "name": "typicode"
   },
   "teachers": [
-
+    {
+      "fullName": "pershko vladyslav",
+      "speciality": "English",
+      "country": "Albania",
+      "city": "Ovruch",
+      "email": "vpersko@gmail.com",
+      "phone": "0932817244",
+      "bDate": "2023-05-04",
+      "gender": "male",
+      "bgColor": "#000000",
+      "note": "",
+      "id": 1
+    }
   ]
 }
